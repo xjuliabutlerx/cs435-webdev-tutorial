@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer} from "react"
+import React, { useState, useEffect} from "react"
 import './App.css';
 
 function App({ login }){
@@ -23,10 +23,7 @@ function App({ login }){
     if(!data) return null;
 
       return <div>
-        <h1>{data.name}</h1>
-        <p>{"this is my pic"}</p>
-        <p>{data.location}</p>
-        <img alt = {data.login} src = {data.avatar_url}/>
+        
       </div>
 
 }
