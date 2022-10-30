@@ -1,25 +1,35 @@
-import logo from './logo.svg';
+import React, { useState, useEffect, useReducer} from "react"
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+function App({ login }){
+  const [data, setData] = useState(null);
+  const [loading,setloading] = useState(null);
+  const [error, setError] = useState(null);
+
+    useEffect(() => {
+      if(!login) return;
+      setloading(true);
+
+      fetch(`https://api.github.com/users/${login}`)
+        .then(response => response.json())
+        .then(setData)
+        .then(()=> setloading(false))
+        .catch(setError);
+    },[login]);
+
+    if(loading) return <h1>Loading...</h1>;
+    if(error) 
+      return <pre>{JSON.stringify(error, null, 2)}</pre>;
+    if(!data) return null;
+
+      return <div>
+        <h1>{data.name}</h1>
+        <p>{"this is my pic"}</p>
+        <p>{data.location}</p>
+        <img alt = {data.login} src = {data.avatar_url}/>
+      </div>
+
 }
+
 
 export default App;
