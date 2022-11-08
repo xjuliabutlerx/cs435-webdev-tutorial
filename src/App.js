@@ -26,7 +26,8 @@ function App({ login }){
     //console.log(data);
 
       return <div>
-        <h1 align={"center"}>{data.name}</h1>
+        <h1 align={"center"}>{data.name}<br/></h1>
+        <h3 align={"center"}>{data.login}</h3>
         <div class={"row"}>
           <div class={"col"}>
             <h3>{"Following: " + data.following}</h3>
@@ -46,7 +47,6 @@ function App({ login }){
         <p>If you want a fun surprise, click this button!</p>
         <button onClick={surprise}>Surprise Button!</button>
       </div>
-
 }
 
 function surprise() {
